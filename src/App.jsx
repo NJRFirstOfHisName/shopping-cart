@@ -9,9 +9,17 @@ function App() {
   if (error) return <p>A network error was encountered</p>;
   if (loading) return <p>Loading...</p>;
 
-  console.log(catalog, error, loading);
+  console.log(catalog);
 
-  return <Product productData={catalog[0]} />;
+  return (
+    <div className="container">
+      <Product productData={catalog[0]} />
+      <Product productData={catalog[1]} />
+      <Product productData={catalog[2]} />
+      <Product productData={catalog[3]} />
+      <Product productData={catalog[4]} />
+    </div>
+  );
 }
 
 export default App;
