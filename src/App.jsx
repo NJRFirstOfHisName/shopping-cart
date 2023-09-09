@@ -5,10 +5,30 @@ import FetchCatalog from "./components/FetchCatalog";
 import { Link } from "react-router-dom";
 
 function App() {
+  const [cart, setCart] = useState([]);
   const { catalog, error, loading } = FetchCatalog();
 
   if (error) return <p>A network error was encountered</p>;
   if (loading) return <p>Loading...</p>;
+
+  function addToCart(e, addQuantity) {
+    const productID = e.target.id;
+    const price = catalog[productID - 1].price;
+    let found = false;
+    const updatedCart = cart.map((product) => {
+      if (product.id === productID) {
+        found = true;
+        return { ...product, quantity: product.quantity + addQuantity };
+      } else {
+        return product;
+      }
+    });
+    if (!found) {
+      setCart([...updatedCart, { id: productID, quantity: addQuantity }]);
+    } else {
+      setCart(updatedCart);
+    }
+  }
 
   console.log(catalog);
   let catalogArray = [];
@@ -17,7 +37,9 @@ function App() {
     const descriptionEnd = product.description.slice(100);
     product.descriptionStart = descriptionStart;
     product.descriptionEnd = descriptionEnd;
-    catalogArray.push(<Product productData={product} />);
+    catalogArray.push(
+      <Product key={product.id} productData={product} addToCart={addToCart} />
+    );
   });
 
   return (

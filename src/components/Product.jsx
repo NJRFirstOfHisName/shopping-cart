@@ -1,4 +1,7 @@
-function Product({ productData }) {
+import { useState } from "react";
+
+function Product({ productData, addToCart }) {
+  const [quantity, setQuantity] = useState(1);
   function toggleText() {
     let points = document.querySelectorAll("points");
     let showMoreText = document.querySelectorAll("more-text");
@@ -14,6 +17,7 @@ function Product({ productData }) {
       buttonText.innerHTML = "Show Less";
     }
   }
+
   return (
     <div className="product card">
       <div className="card-image">
@@ -33,13 +37,19 @@ function Product({ productData }) {
         <div className="card-price">${productData.price}</div>
         <div className="card-buy">
           <input
-            className="card-input"
+            className={`card-input`}
             type="number"
             placeholder="1"
             min="1"
             max="99"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
-          <span className="material-symbols-outlined card-cart">
+          <span
+            className="material-symbols-outlined card-cart"
+            id={productData.id}
+            onClick={(e) => addToCart(e, quantity)}
+          >
             shopping_cart
           </span>
         </div>
