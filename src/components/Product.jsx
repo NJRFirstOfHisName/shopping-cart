@@ -1,4 +1,19 @@
 function Product({ productData }) {
+  function toggleText() {
+    let points = document.querySelectorAll("points");
+    let showMoreText = document.querySelectorAll("more-text");
+    let buttonText = document.querySelectorAll("more-button");
+
+    if (points.style.display === "none") {
+      showMoreText.style.display = "none";
+      points.style.display = "inline";
+      buttonText.innerHTML = "Show More";
+    } else {
+      showMoreText.style.display = "inline";
+      points.style.display = "none";
+      buttonText.innerHTML = "Show Less";
+    }
+  }
   return (
     <div className="product card">
       <div className="card-image">
@@ -7,7 +22,14 @@ function Product({ productData }) {
       <div className="card-text">
         <p className="card-category">{productData.category}</p>{" "}
         <h2 className="card-title">{productData.title}</h2>{" "}
-        <p className="card-body">{productData.description}</p>
+        <p className="card-body">
+          {productData.descriptionStart}
+          <span className="points">...</span>
+          <span className="more-text">{productData.descriptionEnd}</span>
+        </p>
+        <button type="button" className="more-button" onClick={toggleText}>
+          Show more
+        </button>
         <div className="card-price">${productData.price}</div>
         <div className="card-buy">
           <input

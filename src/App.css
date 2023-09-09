@@ -18,10 +18,16 @@
   margin: 0;
   text-align: center;
   background-color: white;
+  width: 99vw;
+}
+
+.navbar {
+  height: 100px;
+  background-color: rgb(154, 79, 224);
 }
 
 .container {
-  width: 100vw;
+  width: 98vw;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -33,6 +39,7 @@
   flex-direction: column;
   width: 20vw;
   margin-bottom: 60px;
+  color: white;
 }
 
 .card-image {
@@ -50,9 +57,8 @@
   box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
   margin: -30px -20px;
   height: fit-content;
-  width: 20vw;
+  width: 22vw;
   background-color: #1d1c20;
-  color: #fff;
   padding: 10px;
 }
 
@@ -62,18 +68,18 @@
 }
 
 .card-title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-bottom: 0.3em;
 }
 
-.card-body {
+.more-text {
+  display: none;
 }
 
 .card-price {
   width: 100px;
   height: 100px;
   background-color: #970c0a;
-  color: #fff;
   margin-left: auto;
   margin-top: -20px;
   font-size: 1.8rem;
@@ -99,6 +105,11 @@
 
 .card-cart {
   fill: currentColor;
-  color: white;
   font-size: 30px;
+  padding: 0.1em;
+}
+
+.footer {
+  color: black;
+  float: right;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Product from "./components/Product";
 import FetchCatalog from "./components/FetchCatalog";
+import { Link } from "react-router-dom";
 
 function App() {
   const { catalog, error, loading } = FetchCatalog();
@@ -10,15 +11,27 @@ function App() {
   if (loading) return <p>Loading...</p>;
 
   console.log(catalog);
+  let catalogArray = [];
+  catalog.forEach((product) => {
+    const descriptionStart = product.description.slice(0, 100);
+    const descriptionEnd = product.description.slice(100);
+    product.descriptionStart = descriptionStart;
+    product.descriptionEnd = descriptionEnd;
+    catalogArray.push(<Product productData={product} />);
+  });
 
   return (
-    <div className="container">
-      <Product productData={catalog[0]} />
-      <Product productData={catalog[1]} />
-      <Product productData={catalog[2]} />
-      <Product productData={catalog[3]} />
-      <Product productData={catalog[4]} />
-    </div>
+    <>
+      <div className="navbar">
+        <h1>Navigation</h1>
+      </div>
+      <div className="container">{catalogArray}</div>
+      <p className="footer">
+        Layout adapted from{" "}
+        <a href="https://codepen.io/aryancodeworm/pen/mdMjbbp">La Saveur</a> by{" "}
+        <a href="https://codepen.io/aryancodeworm">Ayran Tayal</a>
+      </p>
+    </>
   );
 }
 
