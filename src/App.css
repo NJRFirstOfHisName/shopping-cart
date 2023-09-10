@@ -129,6 +129,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-card {
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr;
+  padding: 10px;
+  border: solid 1px black;
+  margin: 10px;
+  width: 1000px;
+  align-items: center;
+  justify-items: center;
+}
+
+.cart-card img {
+  height: 80px;
+}
+
 .footer {
   color: black;
   float: right;

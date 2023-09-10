@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import Product from "./components/Product";
 import FetchCatalog from "./components/FetchCatalog";
@@ -13,7 +13,6 @@ function App() {
 
   function addToCart(e, addQuantity) {
     const productID = e.target.id;
-    const price = catalog[productID - 1].price;
     let found = false;
     const updatedCart = cart.map((product) => {
       if (product.id === productID) {
@@ -30,7 +29,6 @@ function App() {
     }
   }
 
-  console.log(catalog);
   let catalogArray = [];
   catalog.forEach((product) => {
     const descriptionStart = product.description.slice(0, 100);
@@ -46,6 +44,9 @@ function App() {
     <>
       <div className="navbar">
         <h1>Navigation</h1>
+        <Link to="cart" state={{ catalog: catalog, cart: cart }}>
+          Cart
+        </Link>
       </div>
       <div className="container">{catalogArray}</div>
       <p className="footer">
